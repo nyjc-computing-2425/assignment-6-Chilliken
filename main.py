@@ -9,43 +9,74 @@ def clock(n):
     # Your code here
     number = 0
     while number <n:
-        print(datetime.strftime(datetime.now(),"%H:%M:%S"),end="\r")
+        now = datetime.now()
+        time_now_in_hms = datetime.strftime(now,"%H:%M:%S")
+        print(time_now_in_hms,end="\r")
         time.sleep(1)
         number +=1
-    pass
+
 
 
 # Part 2
 def lcm(a, b):
     """
-    dividing the product of a and b with the greatest common factor found in gcf(a,b)
+    finding the least common multiple of a and b
+
+    Parameters
+    ---------
+    a: int
+        first number
+
+    b: int
+        second number
+
+    Returns
+    -------
+    int   
+        least common multiple of a and b
+    
     """
     # Your code here
-    lcm = a//(gcf(a,b))*b
-    return lcm
+    a_original = a
+    b_original = b
+    while a != b:
+        if a < b:
+            a = a + a_original
+        if a > b:
+            b = b + b_original
+    return a
+    
                 
-        
-    pass
-
 # Part 3
 def gcf(a, b):
-
     """
-    recursive function by applying euclidean algorithm
+    finding the greatest common factor of a and b
+
+    Parameters
+    ---------
+    a: int
+        first number
+
+    b: int
+        second number
+
+    Returns
+    -------
+    int   
+        greatest common factor of a and b
+
     """
     # Your code here
-    if a == 0:
-        return b
-    if b == 0:
-        return a
-
-
-    if a == b:
-        return a
-
-    if a > b:
-        return gcf(a-b, b)
-    return gcf(a, b-a)
-
-    pass
-print(lcm(3,6))
+    
+    while a!= 1:
+        if a == 0:
+            return b
+        if b == 0:
+            return a
+        if a == b:
+            return a
+        if a > b:
+            a = a - b
+        if b > a:
+            b = b - a
+    return a
